@@ -1,53 +1,50 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>3 Cartas para ti - Camila & Josué</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cartas para mi amor</title>
 <style>
-body{margin:0;font-family:sans-serif;background:linear-gradient(#ffdde1,#ee9ca7);text-align:center;padding:20px}
-h1{color:#b81d4a} .sub{color:#fff;margin-top:-10px}
-.fotos{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;max-width:400px;margin:20px auto}
-.fotos img{width:100%;height:110px;object-fit:cover;border-radius:15px;border:3px solid white}
-.sobres{display:flex;flex-direction:column;gap:20px;max-width:400px;margin:30px auto}
-.sobre{background:white;border-radius:20px;padding:20px;box-shadow:0 10px 25px rgba(0,0,0,.15);cursor:pointer;transition:.2s}
-.sobre:active{transform:scale(0.97)}
-.carta-modal{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center;padding:20px;z-index:10}
-.carta-modal.activo{display:flex}
-.carta-contenido{background:#fffaf0;border-radius:20px;padding:25px;max-width:450px;text-align:left;line-height:1.7;color:#444;max-height:85vh;overflow-y:auto}
-.cerrar{float:right;background:#ff4d6d;color:white;border:none;border-radius:50%;width:35px;height:35px;font-size:20px;cursor:pointer}
-.firma{font-weight:bold;color:#ff4d6d;display:block;text-align:right;margin-top:15px}
-.video{border-radius:20px;overflow:hidden;margin:15px auto;max-width:400px;box-shadow:0 10px 20px rgba(0,0,0,.2);border:3px solid white}
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;600&display=swap');
+body{font-family:'Poppins',sans-serif;background:linear-gradient(135deg,#fff0f5,#ffe4e1,#f0e6ff);padding:20px;margin:0}
+.container{max-width:800px;margin:0 auto}
+h1{font-family:'Playfair Display',serif;text-align:center;color:#c44569;font-size:2.3rem}
+.photos{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:25px 0}
+.photos img{width:100%;height:200px;object-fit:cover;border-radius:16px;box-shadow:0 8px 20px rgba(196,69,105,.2)}
+.video-card{background:white;border-radius:20px;padding:20px;margin:30px 0;text-align:center;box-shadow:0 10px 30px rgba(0,0,0,.1)}
+.video-wrapper{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px}
+.video-wrapper iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
+.card{background:white;border-radius:20px;padding:20px;margin-bottom:20px;border-left:5px solid #ff8fab;box-shadow:0 8px 20px rgba(0,0,0,.06)}
+.card h3{font-family:'Playfair Display',serif;color:#c44569}
+.back{text-decoration:none;color:#c44569;font-weight:600}
 </style>
 </head>
 <body>
-<h1>💌 3 Cartas para ti 💌</h1>
-<p class="sub">Camila & Josué - Para Siempre</p>
+<div class="container">
+<a href="index.html" class="back">← Volver</a>
+<h1>Para ti, mi amor 💖</h1>
 
-<div class="video">
-<iframe width="100%" height="220" src="https://www.youtube.com/embed/2Vv-BfVoq4g?autoplay=1&mute=0&loop=1&playlist=2Vv-BfVoq4g" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-</div>
-<p style="color:white;font-size:14px;margin-top:5px">🎵 Perfect - Ed Sheeran<br>(si no suena, dale Play ▶️)</p>
-
-<div class="fotos">
-<img src="foto1.jpg" onerror="this.style.display='none'"><img src="foto2.jpg" onerror="this.style.display='none'"><img src="foto3.jpg" onerror="this.style.display='none'"><img src="foto4.jpg" onerror="this.style.display='none'"><img src="foto5.jpg" onerror="this.style.display='none'"><img src="foto6.jpg" onerror="this.style.display='none'">
-</div>
-
-<div class="sobres">
-<div class="sobre" onclick="abrir(1)"><div style="font-size:50px">💌</div><h2 style="color:#ff4d6d;margin:5px">Carta 1</h2><p style="color:#888;font-size:14px;margin:0">Para cuando te extraño demasiado</p></div>
-<div class="sobre" onclick="abrir(2)"><div style="font-size:50px">💖</div><h2 style="color:#ff4d6d;margin:5px">Carta 2</h2><p style="color:#888;font-size:14px;margin:0">Lo que me haces sentir</p></div>
-<div class="sobre" onclick="abrir(3)"><div style="font-size:50px">💍</div><h2 style="color:#ff4d6d;margin:5px">Carta 3</h2><p style="color:#888;font-size:14px;margin:0">Nuestra promesa</p></div>
+<div class="photos">
+<img src="IMG-20261107-WA0080.jpg">
+<img src="IMG-20261107-WA0051.jpg">
+<img src="IMG-20261024-WA0052.jpg">
+<img src="IMG-20260910-WA0057.jpg">
+<img src="IMG-20260814-WA0043.jpg">
+<img src="IMG-20260708-WA0067.jpg">
 </div>
 
-<div id="modal" class="carta-modal" onclick="cerrar()"><div class="carta-contenido" onclick="event.stopPropagation()"><button class="cerrar" onclick="cerrar()">×</button><div id="textoCarta"></div></div></div>
+<div class="video-card">
+<h2>🎵 Nuestra canción - Perfect</h2>
+<div class="video-wrapper">
+<iframe src="https://www.youtube.com/embed/2Vv-BfVoq4g" allowfullscreen></iframe>
+</div>
+</div>
 
-<script>
-const cartas={
-1:`Mi amor,<br><br>No sé por dónde empezar porque hay tanto que te quiero decir y nunca me alcanzan las palabras.<br><br>Hay días que te extraño tanto que me duele el pecho. No es un dolor feo, es ese dolor bonito de saber que amas a alguien tanto que tu cuerpo lo siente cuando no está.<br><br>Desde que llegaste a mi vida, todo tiene más color. Antes los días eran normales, ahora todos los días son "un día más contigo" y eso lo cambia todo.<br><br>Gracias por tu paciencia, por tu risa, por abrazarme como si no me fueras a soltar nunca. Esos abrazos son mi lugar seguro.<br><br>Te amo hoy, mañana y siempre.<br><span class="firma">Tuya, Camila</span>`,
-2:`Josué,<br><br>Si alguien me preguntara qué es amar, yo le enseñaría una foto tuya. Le mostraría cómo me miras, cómo me cuidas, cómo me haces reír incluso cuando quiero estar enojada.<br><br>Contigo aprendí que el amor no es perfecto, es real. Es quedarnos aunque estemos cansados, es hablar aunque nos cueste, es elegirnos todos los días.<br><br>Me encantas. Me encanta tu forma de ser, tu voz cuando me dices "mi amor", tu forma de abrazarme por la espalda. Me encanta el futuro que me imagino contigo.<br><br>Eres mi persona favorita en este mundo entero.<br><span class="firma">Tu niña</span>`,
-3:`Amor de mi vida,<br><br>Esta es nuestra historia y apenas está empezando.<br><br>Quiero que cuando veamos nuestro calendario en 1 año, en 5 años, en 20 años, nos acordemos de este momento.<br><br>Yo te prometo cuidarte en tus días malos.<br>Te prometo celebrar contigo cada uno de tus logros.<br>Te prometo ser tu paz, no tu guerra.<br>Te prometo no irme cuando sea difícil.<br>Te prometo amarte con la misma intensidad del primer día.<br><br>Tú no eres solo mi novio, eres mi compañero de vida. Eres mi hogar.<br><span class="firma">Siempre juntos, Camila & Josué</span>`
-};
-function abrir(n){document.getElementById('textoCarta').innerHTML=cartas[n];document.getElementById('modal').classList.add('activo');}
-function cerrar(){document.getElementById('modal').classList.remove('activo');}
-</script>
+<div class="card"><h3>💌 Carta 1</h3><p>Desde que llegaste todo es más bonito. Gracias por elegirme todos los días. Te amo más de lo que las palabras pueden decir.</p></div>
+<div class="card"><h3>💌 Carta 2</h3><p>Cada foto es un pedacito de nuestra historia. Quiero seguir sumando fotos, viajes y momentos contigo. Contigo todo es perfecto.</p></div>
+<div class="card"><h3>💌 Carta 3</h3><p>Te prometo cuidarte, hacerte reír y estar a tu lado siempre. Siempre tú. Siempre nosotros.</p></div>
+
+<p style="text-align:center;color:#c44569;font-size:1.3rem;margin-top:30px">Te amo infinito ❤️</p>
+</div>
 </body>
 </html>
