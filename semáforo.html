@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nuestro rinconcito de sentimientos 💖</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#ffe9ef;font-family:'Poppins',sans-serif;padding:20px}
+.container{max-width:600px;margin:0 auto}
+h1{text-align:center;color:#d6336c;font-size:26px;margin-bottom:2px}
+.sub{text-align:center;color:#666;font-size:13px;margin-bottom:20px}
+.card{background:#fff;border-radius:18px;padding:18px;margin-bottom:16px;box-shadow:0 4px 12px rgba(0,0,0,.06)}
+label{font-weight:700;color:#444;font-size:14px}
+input[type="date"]{width:100%;padding:12px;border-radius:10px;border:1px solid #ddd;margin-top:8px}
+.titulo-rojo{color:#e03131;font-weight:800}
+.titulo-amarillo{color:#e6a800;font-weight:800}
+.titulo-verde{color:#2f9e44;font-weight:800}
+.titulo-rosa{color:#e64980;font-weight:800}
+.op{font-size:15px;margin:10px 0;display:flex;gap:10px;align-items:center;color:#333}
+.op input{width:18px;height:18px;accent-color:#d6336c}
+textarea{width:100%;height:80px;border-radius:12px;border:1px solid #ddd;padding:12px;font-family:inherit;margin-top:8px}
+.btns{display:flex;gap:10px;margin-top:10px}
+.btn{flex:1;padding:14px;border:0;border-radius:12px;font-weight:700;cursor:pointer;font-size:14px}
+.guardar{background:#d6336c;color:white}
+.ver{background:#fff0f3;color:#d6336c;border:1px solid #ffc9d6}
+.nota{text-align:center;font-size:11px;color:#999;margin-top:12px;line-height:1.5}
+.dia{background:white;border-radius:16px;padding:16px;margin-bottom:12px;box-shadow:0 4px 10px rgba(0,0,0,.05)}
+.dia b{color:#d6336c}
+.back{display:block;text-align:center;color:#d6336c;text-decoration:none;font-weight:700;margin-bottom:15px}
+.wa{background:#25D366;color:white;border:0;padding:10px 16px;border-radius:20px;font-weight:700;cursor:pointer;margin-top:8px;width:100%}
+</style>
+</head>
+<body>
+<div class="container">
+<a href="index.html" class="back">← Volver al calendario</a>
+<h1>💖 Nuestro rinconcito de sentimientos 💖</h1>
+<p class="sub">Un lugar para escuchar lo que siente nuestro corazón 💌</p>
+
+<div class="card">
+<label>Elige el día:</label>
+<input type="date" id="fecha" value="2026-11-13">
+</div>
+
+<div class="card">
+<p class="titulo-rojo">🔴 ROJO — Sentimientos que me duelen</p>
+<label class="op"><input type="checkbox" value="Celos"> Celos</label>
+<label class="op"><input type="checkbox" value="Miedo a perderte"> Miedo a perderte</label>
+<label class="op"><input type="checkbox" value="Tristeza cuando te extraño"> Tristeza cuando te extraño</label>
+</div>
+
+<div class="card">
+<p class="titulo-amarillo">🟡 AMARILLO — Sentimientos que me confunden</p>
+<label class="op"><input type="checkbox" value="Dudas"> Dudas</label>
+<label class="op"><input type="checkbox" value="Inseguridad"> Inseguridad</label>
+<label class="op"><input type="checkbox" value="Preocupación"> Preocupación</label>
+</div>
+
+<div class="card">
+<p class="titulo-verde">🟢 VERDE — Sentimientos que alegran mi corazón</p>
+<label class="op"><input type="checkbox" value="Amor"> Amor</label>
+<label class="op"><input type="checkbox" value="Felicidad"> Felicidad</label>
+<label class="op"><input type="checkbox" value="Confianza"> Confianza</label>
+<label class="op"><input type="checkbox" value="Cariño"> Cariño</label>
+<label class="op"><input type="checkbox" value="Paz y tranquilidad"> Paz y tranquilidad</label>
+</div>
+
+<div class="card">
+<p class="titulo-rosa">💖 ROSA — Sentimientos de ternura</p>
+<label class="op"><input type="checkbox" value="Dulzura"> Dulzura</label>
+<label class="op"><input type="checkbox" value="Admiración"> Admiración</label>
+<label class="op"><input type="checkbox" value="Ilusión"> Ilusión</label>
+<label class="op"><input type="checkbox" value="Ganas de abrazarte"> Ganas de abrazarte</label>
+<label class="op"><input type="checkbox" value="Mariposas en el estómago"> Mariposas en el estómago</label>
+<label class="op"><input type="checkbox" value="Sentirme cuidada"> Sentirme cuidada</label>
+</div>
+
+<div class="card">
+<label>💌 ¿Qué más estoy sintiendo hoy?</label>
+<textarea id="extra" placeholder="Escribe aquí lo que siente tu corazón..."></textarea>
+<div class="btns">
+<button class="btn guardar" onclick="guardar()">Guardar mi día</button>
+<button class="btn ver" onclick="verGuardados()">Ver días guardados</button>
+</div>
+<button class="wa" onclick="mandarWhats()">📲 Mandárselo por WhatsApp</button>
+<p class="nota">💖 Guardando en este celular tienes guardado todo tu historial. Cada vez que escribas un sentimiento nuevo, se guarda aquí mismo en tu celular, para que puedas ver cómo te has sentido día a día.</p>
+</div>
+
+<div id="historial"></div>
+</div>
+
+<script>
+function getSeleccionados(){
+  let checks=[...document.querySelectorAll('input[type="checkbox"]:checked')].map(c=>c.value);
+  return checks;
+}
+function guardar(){
+  let fecha=document.getElementById('fecha').value;
+  let extra=document.getElementById('extra').value;
+  let sels=getSeleccionados();
+  if(sels.length==0 && !extra){alert('Elige al menos un sentimiento 💖');return}
+  let lista=JSON.parse(localStorage.getItem('rinconcito')||'[]');
+  lista.unshift({fecha, sels, extra, hora:new Date().toLocaleTimeString('es-MX',{hour:'2-digit',minute:'2-digit'})});
+  localStorage.setItem('rinconcito',JSON.stringify(lista));
+  alert('¡Guardado mi amor! 💖 Tu día ya quedó en el rinconcito');
+  verGuardados();
+}
+function verGuardados(){
+  let lista=JSON.parse(localStorage.getItem('rinconcito')||'[]');
+  let h=document.getElementById('historial');
+  if(lista.length==0){h.innerHTML='<div class="card" style="text-align:center">Aún no hay días guardados. ¡Sé la primera en guardar uno! 💖</div>';return}
+  h.innerHTML='<h3 style="text-align:center;color:#d6336c">📖 Nuestros días guardados</h3>'+lista.map(d=>`<div class="dia"><b>📅 ${d.fecha} - ${d.hora}</b><p>💖 Sentí: ${d.sels.join(', ')}</p><p>💌 ${d.extra||'Sin mensaje extra'}</p></div>`).join('');
+}
+function mandarWhats(){
+  let fecha=document.getElementById('fecha').value;
+  let extra=document.getElementById('extra').value;
+  let sels=getSeleccionados().join(', ');
+  let msg=`💖 NUESTRO RINCONCITO DE SENTIMIENTOS 💖%0A%0A📅 Día: ${fecha}%0A💖 Hoy sentí: ${sels}%0A💌 Más: ${extra}%0A%0ATe amo ❤️`;
+  window.open('https://wa.me/?text='+msg,'_blank');
+}
+document.getElementById('fecha').valueAsDate=new Date();
+</script>
+</body>
+</html>
