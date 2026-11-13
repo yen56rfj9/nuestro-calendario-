@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nuestro Calendario - Camila y Josué</title>
+<style>
+  body {
+    margin:0; font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+    min-height:100vh; display:flex; align-items:center; justify-content:center;
+    padding:20px;
+  }
+  .card {
+    background:white; border-radius:30px; padding:30px 25px; max-width:400px; width:100%;
+    text-align:center; box-shadow:0 20px 40px rgba(0,0,0,0.15);
+  }
+  h1 { color:#ff5a8a; margin:0 0 10px; font-size:28px; }
+  .nombres { font-size:22px; color:#555; margin-bottom:20px; }
+  .nombres span { color:#ff5a8a; font-weight:bold; }
+  .corazon { font-size:60px; animation: latido 1.2s infinite; }
+  @keyframes latido { 0%,100%{transform:scale(1)} 50%{transform:scale(1.2)} }
+  .tiempo { margin-top:25px; display:grid; grid-template-columns:1fr 1fr; gap:15px; }
+  .box { background:#fff0f5; border-radius:15px; padding:15px; }
+  .box b { display:block; font-size:32px; color:#ff5a8a; }
+  .box i { font-style:normal; color:#777; font-size:14px; }
+  .frase { margin-top:25px; color:#888; font-style:italic; }
+  input[type=date] { margin-top:15px; border:2px solid #ffc2d1; border-radius:10px; padding:8px; }
+  .label { font-size:12px; color:#aaa; margin-top:10px; display:block; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="corazon">💖</div>
+  <h1>Nuestro Calendario</h1>
+  <div class="nombres"><span>Camila</span> & <span>Josué</span></div>
+  
+  <label class="label">Nuestra fecha de inicio:</label>
+  <input type="date" id="fechaInicio" value="2024-02-14" onchange="calcular()">
+
+  <div class="tiempo">
+    <div class="box"><b id="anios">0</b><i>Años</i></div>
+    <div class="box"><b id="meses">0</b><i>Meses</i></div>
+    <div class="box"><b id="dias">0</b><i>Días</i></div>
+    <div class="box"><b id="horas">0</b><i>Horas</i></div>
+  </div>
+  
+  <div class="frase" id="frase">Llevamos una historia hermosa juntos ✨</div>
+</div>
+
+<script>
+function calcular(){
+  const inicio = new Date(document.getElementById('fechaInicio').value);
+  const ahora = new Date();
+  if(isNaN(inicio)) return;
+  let diff = ahora - inicio;
+  let diasTot = Math.floor(diff / (1000*60*60*24));
+  let horasTot = Math.floor(diff / (1000*60*60));
+  let anios = Math.floor(diasTot / 365);
+  let meses = Math.floor(diasTot / 30.44);
+  
+  document.getElementById('anios').innerText = anios;
+  document.getElementById('meses').innerText = meses;
+  document.getElementById('dias').innerText = diasTot;
+  document.getElementById('horas').innerText = horasTot;
+  localStorage.setItem('fechaCJ', document.getElementById('fechaInicio').value);
+}
+let guardada = localStorage.getItem('fechaCJ');
+if(guardada){ document.getElementById('fechaInicio').value = guardada; }
+calcular();
+setInterval(calcular, 1000*60);
+</script>
+</body>
+</html>
